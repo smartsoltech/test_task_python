@@ -1,8 +1,8 @@
 import pandas as pd
 import yaml
 
-
-
+with open('settings.yaml', 'r', encoding='UTF-8') as tmp_data:
+    param = yaml.safe_load(tmp_data)
 
 class LetterCategorizer:
     def __init__(self, input_path, output_path):
@@ -12,10 +12,9 @@ class LetterCategorizer:
         
         
         # Словарь с ключевыми словами для каждой категории
-        with open('keyword.yaml', 'r', encoding='UTF-8') as tmp_data:
-            data = yaml.safe_load(tmp_data)
+
             
-        self.keywords_dict = data['keywords']
+        self.keywords_dict = param['keywords']
  
     def _categorize_letter(self, letter):
         """Категоризация письма на основе ключевых слов."""
@@ -50,7 +49,7 @@ class LetterCategorizer:
 
 # Запуск скрипта
 if __name__ == "__main__":
-    input_path = 'sample.csv'
-    output_path = 'result.csv'
+    input_path = param['filenames']['input'][0]
+    output_path = param['filenames']['output'][0]
     categorizer = LetterCategorizer(input_path, output_path)
     categorizer.run()
