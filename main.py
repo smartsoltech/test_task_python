@@ -16,8 +16,7 @@ class LetterCategorizer:
             data = yaml.safe_load(tmp_data)
             
         self.keywords_dict = data['keywords']
-        print(data['keywords'])
-
+ 
     def _categorize_letter(self, letter):
         """Категоризация письма на основе ключевых слов."""
         categories = []
