@@ -38,7 +38,7 @@ class LetterCategorizer:
         """Сохранение результатов в CSV-файл."""
         # Группировка данных по категориям и объединение текстов писем
         grouped_data = self.data.groupby('Categories')[self.data.columns[0]].apply('\n'.join).reset_index()
-        grouped_data.columns = ['Category', 'Letters']
+        grouped_data.columns = ['Category', 'Mails']
         grouped_data.to_csv(self.output_path, index=False)
         
     def run(self):
